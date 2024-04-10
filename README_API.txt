@@ -9,7 +9,7 @@ This Python functions checks API calls to the PokeAPI website and handles differ
 
 2. Installation
 
-	2.1 Clone or download the Python script containing the functions.
+	2.1 Clone or download the Python script containing the functions (link to code https://github.com/walidatorkh/qa_automation_home_assignment.git).
 
 	2.2 Ensure you have Python installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
 
