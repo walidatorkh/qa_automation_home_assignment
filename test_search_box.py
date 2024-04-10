@@ -33,7 +33,7 @@ def setup():
     driver.quit()
 
 
-def fill_search_box(setup, search_term):
+def fill_search_box(setup, search_term: str):
     """
         Function to fill the search box on the Canada Deals Online website and verify the dropdown results.
 
@@ -70,7 +70,7 @@ def fill_search_box(setup, search_term):
 
 
 @pytest.mark.parametrize("search_term", ["Keyboard", "Shower Carpet", "Air Fryer"])
-def test_search_box_more_than_one_result(setup, search_term):
+def test_search_box_more_than_one_result(setup, search_term: str):
     """
         Test function to verify that the search box on the Canada Deals Online website returns more than one result.
 
@@ -108,7 +108,7 @@ def test_search_box_more_than_one_result(setup, search_term):
 
 
 @pytest.mark.parametrize("search_term", ["Keyboard", "Shower Carpet", "Air Fryer"])
-def test_search_box_appears_in_three_top_result(setup, search_term):
+def test_search_box_appears_in_three_top_result(setup, search_term: str):
     """
         Test function to verify that the search term appears in the top three search results on the Canada Deals Online website.
 

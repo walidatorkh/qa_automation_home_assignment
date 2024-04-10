@@ -4,7 +4,7 @@ import random
 import pytest
 
 
-def compare_pokemon_names(id):
+def compare_pokemon_names(id: str):
     """
         Compares the Pokemon names obtained from two different endpoints of the PokeAPI.
         :param id: The ID of the Pokemon to compare.
@@ -108,7 +108,7 @@ def test_smoke_bad_path(
 
 
 @pytest.mark.parametrize("pokemon_id", ["27"])
-def test_compare_id(pokemon_id):
+def test_compare_id(pokemon_id: str):
     """
     Test function to compare Pokémon names retrieved from different endpoints of the PokeAPI.
 
@@ -143,7 +143,7 @@ def test_compare_id(pokemon_id):
     (generate_random_id(), True),
     (5000, None)  # Non-existent Pokémon ID - None should be returned
 ])
-def test_compare_pokemon_names(pokemon_id, expected_result):
+def test_compare_pokemon_names(pokemon_id: str, expected_result: str):
     """
         Tests the functionality of comparing Pokémon names using the PokeAPI.
 
@@ -157,4 +157,3 @@ def test_compare_pokemon_names(pokemon_id, expected_result):
     """
     assert compare_pokemon_names(pokemon_id) == expected_result
 
-# Run the test using: pytest -s test_api.py
