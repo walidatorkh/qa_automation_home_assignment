@@ -33,26 +33,37 @@ jobs:
     # Install Google Chrome and ChromeDriver
     - name: Install Google Chrome and ChromeDriver
       run: |
+
+        # Update the package list
         sudo apt-get update
+        
+        # Install unzip utility if not installed
+        sudo apt-get install unzip
+        
+        # Install the latest stable version of Google Chrome
         sudo apt-get install -y google-chrome-stable
-        google-chrome --version
-        # echo "!!!!!$RUNNER_WORKSPACE/$(dirname $0):$PATH" >> $GITHUB_PATH
-        # echo "!!!!!$GITHUB_PATH"
-        # CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
-        CHROME_VERSION=$(google-chrome --version | grep -oE "^[0-9]+")
-        echo "!!!!!$CHROME_VERSION"
+        
+        # Get the installed version of Google Chrome
+        CHROME_VERSION=$(google-chrome --version | awk '{ print $3 }' | cut -d '.' -f 1)
+        
+        # Get the latest version of ChromeDriver that matches the major version of Google Chrome
         CHROMEDRIVER_VERSION=$(wget -qO- "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-        echo "!!!!!$CHROMEDRIVER_VERSION"
-        wget -q "https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.122/linux64/chrome-linux64.zip"
-        # wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-        echo "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-        sudo unzip chromedriver_linux64.zip
-        echo "1111"
+        
+        # Download the matching version of ChromeDriver
+        wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+        
+        # Unzip the downloaded file
+        unzip chromedriver_linux64.zip
+        
+        # Move the executable to /usr/bin directory
         sudo mv chromedriver /usr/bin/chromedriver
-        echo "2222"
-        sudo chmod 777 /usr/bin/chromedriver
-        echo "3333"
+        
+        # Change the permission of chromedriver to make it executable
+        sudo chmod +x /usr/bin/chromedriver
+        
+        # Print the installed version of ChromeDriver
         chromedriver --version
+
 
     - name: Test with pytest
       run: |
