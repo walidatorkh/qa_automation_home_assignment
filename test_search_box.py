@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope="module")
 def setup():
@@ -25,8 +25,11 @@ def setup():
                 assert driver.title == "Canada Deals Online - Save more. Smile more."
             ```
         """
-    driver = webdriver.Chrome()
-    driver.maximize_window()
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Запуск Chrome в headless режиме
+    chrome_options.add_argument("--no-sandbox")  # Отключение режима песочницы
+    driver = webdriver.Chrome(chrome_options)
+    # driver.maximize_window()
     driver.get("https://www.canadadealsonline.com/")
     driver.implicitly_wait(10)
     yield driver
