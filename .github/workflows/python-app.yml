@@ -40,15 +40,21 @@ jobs:
     # Install ChromeDriver
     - name: Install ChromeDriver
       run: |
-        printf "google-chrome --version" google-chrome --version
+        google-chrome --version
         echo "$RUNNER_WORKSPACE/$(dirname $0):$PATH" >> $GITHUB_PATH
-
+        echo "$GITHUB_PATH"
         CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
+        echo "$CHROME_VERSION"
         CHROMEDRIVER_VERSION=$(wget -qO- "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        echo "$CHROMEDRIVER_VERSION"
         wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+        echo "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
         sudo unzip chromedriver_linux64.zip
+        echo "1111"
         sudo mv chromedriver /usr/bin/chromedriver
+        echo "2222"
         sudo chmod 777 /usr/bin/chromedriver
+        echo "3333"
         chromedriver --version
 
     - name: Test with pytest
