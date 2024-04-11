@@ -35,16 +35,19 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
+        ECHO google-chrome --version
+        google-chrome --version
 
     # Install ChromeDriver
     - name: Install ChromeDriver
       run: |
+        
         CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
         CHROMEDRIVER_VERSION=$(wget -qO- "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
         wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-        unzip chromedriver_linux64.zip
+        sudo unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/bin/chromedriver
-        sudo chmod +x /usr/bin/chromedriver
+        sudo chmod 777 /usr/bin/chromedriver
         chromedriver --version
 
     - name: Test with pytest
