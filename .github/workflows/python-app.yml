@@ -30,16 +30,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
-    # Install Google Chrome
-    - name: Install Google Chrome
+    # Install Google Chrome and ChromeDriver
+    - name: Install Google Chrome and ChromeDriver
       run: |
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
-        google-chrome --version
-
-    # Install ChromeDriver
-    - name: Install ChromeDriver
-      run: |
         google-chrome --version
         echo "$RUNNER_WORKSPACE/$(dirname $0):$PATH" >> $GITHUB_PATH
         echo "$GITHUB_PATH"
