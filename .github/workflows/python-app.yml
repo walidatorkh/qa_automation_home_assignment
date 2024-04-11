@@ -1,0 +1,73 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    # Install Python
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    # Install Google Chrome and ChromeDriver
+    - name: Install Google Chrome and ChromeDriver
+      run: |
+
+        # Update the package list
+        sudo apt-get update
+        
+        # Install unzip utility if not installed
+        sudo apt-get install unzip
+        
+        # Install the latest stable version of Google Chrome
+        sudo apt-get install -y google-chrome-stable
+        echo "111111111111111"
+        # Get the installed version of Google Chrome
+        CHROME_VERSION=$(google-chrome --version | awk '{ print $3 }' | cut -d '.' -f 1)
+        echo "22222222222222222"
+        # Get the latest version of ChromeDriver that matches the major version of Google Chrome
+        #CHROMEDRIVER_VERSION=$(wget -qO- "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        # Get the latest stable version of ChromeDriver
+        LATEST_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        echo "333333333333333"
+        # Download the matching version of ChromeDriver
+        wget -q https://chromedriver.storage.googleapis.com/$LATEST_VERSION/chromedriver_linux64.zip
+        # wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+        echo "444444444444444"
+        # Unzip the downloaded file
+        unzip chromedriver_linux64.zip
+        echo "55555555555555"
+        # Move the executable to /usr/bin directory
+        sudo mv chromedriver /usr/bin/chromedriver
+        
+        # Change the permission of chromedriver to make it executable
+        sudo chmod +x /usr/bin/chromedriver
+        
+        # Print the installed version of ChromeDriver
+        chromedriver --version
+
+
+    - name: Test with pytest
+      run: |
+        pytest
