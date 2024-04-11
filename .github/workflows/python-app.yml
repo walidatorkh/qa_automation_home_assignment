@@ -49,17 +49,17 @@ jobs:
         # Get the latest version of ChromeDriver that matches the major version of Google Chrome
         #CHROMEDRIVER_VERSION=$(wget -qO- "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
         # Get the latest stable version of ChromeDriver
-        LATEST_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        # LATEST_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
         echo "333333333333333"
         # Download the matching version of ChromeDriver
-        wget -q https://chromedriver.storage.googleapis.com/$LATEST_VERSION/chromedriver_linux64.zip
+        # wget -q https://chromedriver.storage.googleapis.com/$LATEST_VERSION/chromedriver_linux64.zip
         # wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
         echo "444444444444444"
         # Unzip the downloaded file
-        unzip chromedriver_linux64.zip
+        # unzip chromedriver_linux64.zip
         echo "55555555555555"
         # Move the executable to /usr/bin directory
-        sudo mv chromedriver /usr/bin/chromedriver
+        # sudo mv chromedriver /usr/bin/chromedriver
         
         # Change the permission of chromedriver to make it executable
         sudo chmod +x /usr/bin/chromedriver
