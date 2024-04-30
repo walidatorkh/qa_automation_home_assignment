@@ -4,7 +4,7 @@ import random
 import pytest
 
 
-def compare_pokemon_names(id: str):
+def compare_pokemon_names(id: str | None):
     """
         Compares the Pokemon names obtained from two different endpoints of the PokeAPI.
         :param id: The ID of the Pokemon to compare.
