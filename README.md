@@ -1,7 +1,7 @@
 # qa_automation_home_assignment
 qa_automation_home_assignment
 
-##This home assignment include couple of tasks:
+## This home assignment include couple of tasks:
 
 1. Example of small test plan for search engine on site : https://www.canadadealsonline.com/
 
