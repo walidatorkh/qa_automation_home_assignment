@@ -4,6 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
+
 @pytest.fixture(scope="module")
 def setup():
     """
@@ -26,8 +27,9 @@ def setup():
             ```
         """
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Запуск Chrome в headless режиме
-    chrome_options.add_argument("--no-sandbox")  # Отключение режима песочницы
+    # chrome_options.headless = False
+    chrome_options.add_argument("--headless")  # start Chrome in headless mode
+    chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(chrome_options)
     # driver.maximize_window()
     driver.get("https://www.canadadealsonline.com/")
@@ -144,8 +146,8 @@ def test_search_box_appears_in_three_top_result(setup, search_term: str):
         # Update XPath expression to include the search term
         dropdown_results = driver.find_elements(By.XPATH,
                                                 f"//span[contains(@class, 'text-blue-400') and contains(text(), '{search_term.lower()}')]")
-        first_result_text = dropdown_results[0].text
-        assert search_term.lower() in first_result_text.lower(), f"Test case failed: {search_term} not found in top search result"
+        third_result_text = dropdown_results[2].text
+        assert search_term.lower() in third_result_text.lower(), f"Test case failed: {search_term} not found in top search result"
         search_input.clear()
     except NoSuchElementException:
         print("Element not found.")
@@ -188,4 +190,3 @@ def test_search_box_no_appears_http_404_not_found_errors(setup):
         assert "404" not in driver.current_url, f"Test case failed: 404 page found after clicking on search result for {search_term}"
     except NoSuchElementException:
         print("Element not found.")
-
