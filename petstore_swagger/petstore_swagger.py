@@ -86,8 +86,7 @@ class PetstoreAPI:
 # Example usage
 if __name__ == "__main__":
     petstore_api = PetstoreAPI()
-
-    # Using examples
+    #
     # # Create a new pet
     # new_pet = petstore_api.create_new_pet(pet_id=12345, name="Buddy", category="Dog", tags=["friendly", "energetic"])
     # logger.info(f"New Pet Created: {new_pet}")
@@ -107,6 +106,8 @@ if __name__ == "__main__":
     #     logger.error(e)
     #
     # # Validate that all pets with status 'sold' are indeed sold
-    # sold_pets = petstore_api.validate_pets_status("sold")
-    # logger.info(f"Sold Pets: {sold_pets}")
-
+    # try:
+    #     sold_pets = petstore_api.validate_pets_status("sold")
+    #     logger.info(f"Sold Pets: {sold_pets}")
+    # except AssertionError as e:
+    #     logger.error(e)
