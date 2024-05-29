@@ -87,15 +87,26 @@ class PetstoreAPI:
 if __name__ == "__main__":
     petstore_api = PetstoreAPI()
 
-    # Create a new pet
-    # new_pet = petstore_api.create_new_pet(pet_id=123456, name="Fido", category="Dogs", tags=["friendly", "playful"])
+    # Using examples
+    # # Create a new pet
+    # new_pet = petstore_api.create_new_pet(pet_id=12345, name="Buddy", category="Dog", tags=["friendly", "energetic"])
+    # logger.info(f"New Pet Created: {new_pet}")
+    #
+    # # Update pet status
+    # updated_pet = petstore_api.update_pet_status(pet_id=12345, status="sold")
+    # logger.info(f"Updated Pet: {updated_pet}")
+    #
+    # # Find pets by status
+    # available_pets = petstore_api.find_pet_by_status("available")
+    # logger.info(f"Available Pets: {available_pets}")
+    #
+    # # Verify the name of the fourth pet with status 'available'
+    # try:
+    #     petstore_api.verify_fourth_pet_name(status="available", expected_name="Puff")
+    # except AssertionError as e:
+    #     logger.error(e)
+    #
+    # # Validate that all pets with status 'sold' are indeed sold
+    # sold_pets = petstore_api.validate_pets_status("sold")
+    # logger.info(f"Sold Pets: {sold_pets}")
 
-    # Update the pet status to 'sold'
-    # petstore_api.update_pet_status(pet_id=123456, status="sold")
-
-    # Find a pet by status 'available' and verify the fourth pet's name is 'Puff' will fail
-    # petstore_api.verify_fourth_pet_name(status="available", expected_name="sample1") will work
-    # petstore_api.verify_fourth_pet_name(status="available", expected_name="Puff")
-
-    # Find a pet by status 'sold' and validate all returned pets have the status 'sold'
-    # petstore_api.validate_pets_status(status="sold")
